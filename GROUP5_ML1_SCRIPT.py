@@ -7,7 +7,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 st.write("""
 # Predicting a Penguin's Body Mass
@@ -29,7 +29,7 @@ final_df = pd.concat([df_nums, df_objs], axis=1)
 
 # Splitting labels and features
 y = final_df['body_mass_g']
-X = final_df.drop('body_mass_g', axis=1)
+X = final_df.drop('body_mass_g', axis=1)    
 
 # Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
@@ -98,6 +98,8 @@ MAE = mean_absolute_error(y_test, y_pred)
 MSE = mean_squared_error(y_test, y_pred)
 RMSE = np.sqrt(MSE)
 
+
 st.write(f"**Mean Absolute Error (MAE):** {MAE:.2f}")
 st.write(f"**Mean Squared Error (MSE):** {MSE:.2f}")
 st.write(f"**Root Mean Squared Error (RMSE):** {RMSE:.2f}")
+st.write(f"**R2: {y_test, y_pred}")
